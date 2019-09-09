@@ -3,9 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" type="text/css" href="style.css"/>      
+    <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body>
-
+    <div id="etchasketchcontainer">
+    </div>
   </body>
+
+  <script>
+
+      var container = document.querySelector('#etchasketchcontainer');
+      for(let i = 0; i < 16; i++)
+      {
+        var row = document.createElement('div');
+        row.classList.add('row');
+
+        for(let t = 0; t < 16; t++)
+        {
+          var tile = document.createElement('div');
+          tile.classList.add('etchasketchtile');
+          row.appendChild(tile);
+        }
+        container.appendChild(row);
+      }
+  </script>
 </html>
