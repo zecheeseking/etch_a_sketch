@@ -6,25 +6,32 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body>
+    <input type="button" id="cleargridbtn" value=" Clear Grid"></input>
     <div id="etchasketchcontainer">
     </div>
   </body>
 
   <script>
 
-      createGrid();
+      document.querySelector('#cleargridbtn')
+        .addEventListener('click', function(e){
+          clearGrid();
+          createGrid(prompt('Please enter the amount of rows and columns you want!', '16'));
+        });
 
-      function createGrid()
+      createGrid(16);
+
+      function createGrid(cellCount)
       {
         var container = document.querySelector('#etchasketchcontainer');
-        let height = 750 / 16;
-        let width = 750 / 16;
-        container.setAttribute('grid-template-columns', `repeat(16, ${height}px)`);
-        container.setAttribute('grid-template-rows', `repeat(16, ${width}px)`);
+        let height = 750 / cellCount;
+        let width = 750 / cellCount;
+        container.setAttribute('grid-template-columns', `repeat(${cellCount}, ${height}px)`);
+        container.setAttribute('grid-template-rows', `repeat(${cellCount}, ${width}px)`);
 
-        for(let cellc = 1; cellc <= 16; cellc++)
+        for(let cellc = 1; cellc <= cellCount; cellc++)
         {
-          for(let cellr = 1; cellr <= 16; cellr++)
+          for(let cellr = 1; cellr <= cellCount; cellr++)
           {
             container.appendChild(createTile(cellr, cellc));
           }
@@ -41,9 +48,12 @@
         return tile;
       }
 
-      function ToPx(str)
+      function clearGrid()
       {
-        return '' + str + 'px';
+        var container = document.querySelector('#etchasketchcontainer');
+
+        while(container.firstChild)
+          container.removeChild(container.firstChild);
       }
   </script>
 </html>

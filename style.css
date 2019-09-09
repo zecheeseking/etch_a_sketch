@@ -1,6 +1,15 @@
 body{
   display: flex;
+  flex-direction: column;
   justify-content:center;
+  align-items: center;
+}
+
+#cleargridbtn{
+  height: 40px;
+  width: 80px;
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 
 #etchasketchcontainer{
