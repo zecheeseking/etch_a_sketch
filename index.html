@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
   <body>
-    <input type="button" id="cleargridbtn" value=" Clear Grid"></input>
+    <input type="button" id="cleargridbtn" value="Resize Grid"></input>
     <div id="etchasketchcontainer">
     </div>
   </body>
@@ -43,7 +43,23 @@
         tile.classList.add('etchasketchtile');
         tile.style.cssText = `grid-column: ${gridX}; grid-row:${gridY}`;
         tile.addEventListener('mouseenter', function(e){
-          e.target.style.background = 'rgb(181, 181, 181)';
+          if(e.target.style.background === '')
+          {
+            let r = Math.floor(Math.random() * 256);
+            let g = Math.floor(Math.random() * 256);
+            let b = Math.floor(Math.random() * 256);
+            e.target.style.background = `rgb(${r}, ${g}, ${b})`;
+          }
+          else
+          {
+            //take initial rgb, reduce each by 10% of 255, then reset.
+            var rgb = e.target.style.background.replace(/[^\d,]/g, '').split(',');
+            console.log(rgb);
+            let percentReduced = Math.floor(255 / 10);
+            e.target.style.background = `rgb(${rgb[0] - percentReduced},
+              ${rgb[1] - percentReduced},
+               ${rgb[2] - percentReduced})`;
+          }
         });
         return tile;
       }
