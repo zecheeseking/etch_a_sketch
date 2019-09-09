@@ -52,9 +52,8 @@
           }
           else
           {
-            //take initial rgb, reduce each by 10% of 255, then reset.
+            //using regex expression. I'm unsure how this works for now, researching for later.
             var rgb = e.target.style.background.replace(/[^\d,]/g, '').split(',');
-            console.log(rgb);
             let percentReduced = Math.floor(255 / 10);
             e.target.style.background = `rgb(${rgb[0] - percentReduced},
               ${rgb[1] - percentReduced},
