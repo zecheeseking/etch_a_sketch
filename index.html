@@ -20,11 +20,18 @@
 
         for(let t = 0; t < 16; t++)
         {
-          var tile = document.createElement('div');
-          tile.classList.add('etchasketchtile');
-          row.appendChild(tile);
+          row.appendChild(createTile());
         }
         container.appendChild(row);
+      }
+
+      function createTile(){
+        var tile = document.createElement('div');
+        tile.classList.add('etchasketchtile');
+        tile.addEventListener('mouseenter', function(e){
+          e.target.style.background = 'rgb(181, 181, 181)';
+        });
+        return tile;
       }
   </script>
 </html>
