@@ -12,26 +12,38 @@
 
   <script>
 
-      var container = document.querySelector('#etchasketchcontainer');
-      for(let i = 0; i < 16; i++)
-      {
-        var row = document.createElement('div');
-        row.classList.add('row');
+      createGrid();
 
-        for(let t = 0; t < 16; t++)
+      function createGrid()
+      {
+        var container = document.querySelector('#etchasketchcontainer');
+        let height = 750 / 16;
+        let width = 750 / 16;
+        container.setAttribute('grid-template-columns', `repeat(16, ${height}px)`);
+        container.setAttribute('grid-template-rows', `repeat(16, ${width}px)`);
+
+        for(let cellc = 1; cellc <= 16; cellc++)
         {
-          row.appendChild(createTile());
+          for(let cellr = 1; cellr <= 16; cellr++)
+          {
+            container.appendChild(createTile(cellr, cellc));
+          }
         }
-        container.appendChild(row);
       }
 
-      function createTile(){
+      function createTile(gridX, gridY){
         var tile = document.createElement('div');
         tile.classList.add('etchasketchtile');
+        tile.style.cssText = `grid-column: ${gridX}; grid-row:${gridY}`;
         tile.addEventListener('mouseenter', function(e){
           e.target.style.background = 'rgb(181, 181, 181)';
         });
         return tile;
+      }
+
+      function ToPx(str)
+      {
+        return '' + str + 'px';
       }
   </script>
 </html>
